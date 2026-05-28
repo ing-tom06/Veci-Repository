@@ -1,0 +1,277 @@
+.dashboard-container {
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+.search-container {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: var(--radius-sm);
+  background-color: white;
+  font-size: 1rem;
+}
+
+.btn-search {
+  background: var(--primary-color);
+  color: var(--primary-text-on-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.btn-search:hover {
+  background: var(--primary-color-hover);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.card-header h3 {
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.card-body p {
+  margin: 0 0 8px 0;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+.category-badge {
+  background: var(--sidebar-active-bg);
+  color: var(--primary-color);
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+  font-size: 0.8rem;
+}
+
+.status-badge {
+  background: #f0f0f0;
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status-badge.completada {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-badge.cancelada {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.status-badge.abierta {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.status-badge.asignada {
+  background-color: #fff3e0;
+  color: #ef6c00;
+}
+
+.status-badge.aceptada {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-badge.pendiente, .status-badge.sin-respuesta {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.status-badge.rechazada {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.btn-primary, .btn-success-footer {
+  padding: 10px 15px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+  flex: 1;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: var(--primary-text-on-color);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-color-hover);
+}
+
+.btn-success-footer {
+  background: var(--success-color);
+  color: white;
+}
+
+.btn-success-footer:hover {
+  background: var(--primary-color-hover);
+}
+
+.card-footer {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 15px;
+}
+
+.no-data {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+/* Global Snackbar Overrides */
+::ng-deep .success-snackbar {
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+}
+
+::ng-deep .error-snackbar {
+  background-color: #f44336;
+  color: white;
+  font-weight: bold;
+}
+
+/* Nested Offers Styles */
+.nested-offers {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed #ccc;
+}
+
+.nested-offers h4 {
+  margin: 0 0 10px 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.offer-item {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 20px;
+  background: #f9f9f9;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+}
+
+.offer-header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.offer-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
+.offer-details {
+  flex: 1;
+}
+
+.offer-name {
+  margin: 0 0 4px 0;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.offer-age {
+  font-weight: normal;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.no-offers {
+  text-align: center;
+  padding: 10px;
+  color: #888;
+  font-size: 0.9rem;
+  background: #f9f9f9;
+  border-radius: var(--radius-sm);
+}
+
+.offer-actions {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn-small {
+  flex: 1;
+  padding: 10px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: white;
+  text-align: center;
+}
+
+.btn-success {
+  background-color: var(--success-color);
+}
+
+.btn-success:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.btn-danger {
+  background-color: var(--error-color);
+}
+
+.btn-danger:hover {
+  background-color: #b71c1c;
+}

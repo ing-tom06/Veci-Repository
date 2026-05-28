@@ -1,0 +1,100 @@
+<div class="register-container">
+  <mat-card class="register-card">
+    <mat-card-header>
+      <mat-card-title>Únete a Veci</mat-card-title>
+      <mat-card-subtitle>Crea tu cuenta para empezar</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div *ngIf="errorMessage" class="error-msg">
+        {{ errorMessage }}
+      </div>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombre">
+            <mat-error *ngIf="registerForm.get('nombre')?.hasError('required')">Requerido</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Apellido</mat-label>
+            <input matInput formControlName="apellido">
+            <mat-error *ngIf="registerForm.get('apellido')?.hasError('required')">Requerido</mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput formControlName="correo" type="email">
+          <mat-error *ngIf="registerForm.get('correo')?.hasError('required')">Requerido</mat-error>
+          <mat-error *ngIf="registerForm.get('correo')?.hasError('email')">Correo inválido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña</mat-label>
+          <input matInput formControlName="contrasena" type="password">
+          <mat-error *ngIf="registerForm.get('contrasena')?.hasError('required')">Requerida</mat-error>
+          <mat-error *ngIf="registerForm.get('contrasena')?.hasError('minlength')">Mínimo 8 caracteres</mat-error>
+        </mat-form-field>
+
+        <div class="form-row">
+          <mat-form-field appearance="outline" class="third-width">
+            <mat-label>Documento</mat-label>
+            <input matInput formControlName="documento_identidad">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="third-width">
+            <mat-label>Teléfono</mat-label>
+            <input matInput formControlName="telefono">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="third-width">
+            <mat-label>Rol</mat-label>
+            <mat-select formControlName="rol">
+              <mat-option *ngFor="let role of roles" [value]="role.value">
+                {{ role.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="third-width">
+            <mat-label>Edad</mat-label>
+            <input matInput formControlName="edad" type="number">
+            <mat-error *ngIf="registerForm.get('edad')?.hasError('required')">Requerida</mat-error>
+            <mat-error *ngIf="registerForm.get('edad')?.hasError('min') || registerForm.get('edad')?.hasError('max')">
+              <span *ngIf="registerForm.get('rol')?.value === 'voluntario'">Volunteers must be between 18 and 50 years
+                old</span>
+              <span *ngIf="registerForm.get('rol')?.value === 'adulto mayor'">Elderly users must be between 60 and 90
+                years old</span>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <div class="file-upload-container">
+          <label class="file-upload-label">Foto de Perfil (Opcional)</label>
+          <button type="button" mat-stroked-button (click)="fileInput.click()">
+            <mat-icon>cloud_upload</mat-icon> Subir imagen
+          </button>
+          <input hidden (change)="onFileSelected($event)" #fileInput type="file" accept="image/*">
+          <span class="file-name" *ngIf="selectedFile">{{ selectedFile.name }}</span>
+
+          <div class="preview-container" *ngIf="filePreview">
+            <img [src]="filePreview" class="image-preview" alt="Preview">
+          </div>
+        </div>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid" class="submit-btn">
+          Registrarme
+        </button>
+      </form>
+    </mat-card-content>
+
+    <mat-card-footer>
+      <p>¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a></p>
+    </mat-card-footer>
+  </mat-card>
+</div>

@@ -1,0 +1,49 @@
+<div class="auth-page">
+  <div class="split-container">
+    <!-- Panel Azul (Izquierda) -->
+    <div class="split-left">
+      <div class="brand-info">
+        <span class="brand-icon">V</span>
+        <h1 class="brand-title">¡Veci!</h1>
+        <p class="brand-subtitle">Conectando generaciones,<br>construyendo comunidad.</p>
+      </div>
+    </div>
+
+    <!-- Formulario (Derecha) -->
+    <div class="split-right">
+      <div class="form-wrapper">
+        <div class="auth-header">
+          <h2>Bienvenido</h2>
+          <p>Ingresa a tu cuenta para continuar</p>
+        </div>
+
+        <div *ngIf="errorMessage" class="error-msg">
+          {{ errorMessage }}
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+          <mat-form-field appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input matInput formControlName="correo" type="email">
+            <mat-error *ngIf="loginForm.get('correo')?.hasError('required')">Requerido</mat-error>
+            <mat-error *ngIf="loginForm.get('correo')?.hasError('email')">Inválido</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="contrasena" type="password">
+            <mat-error *ngIf="loginForm.get('contrasena')?.hasError('required')">Requerida</mat-error>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" class="submit-btn">
+            INGRESAR
+          </button>
+        </form>
+
+        <div class="auth-footer">
+          <p>¿No tienes cuenta? <a routerLink="/register">Regístrate</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

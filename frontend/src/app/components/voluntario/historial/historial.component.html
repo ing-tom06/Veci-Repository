@@ -1,0 +1,32 @@
+<div class="page-title">
+  <h2>Historial de Actividades</h2>
+</div>
+<div class="dashboard-container">
+  
+  <div class="card-grid">
+    <div class="card" *ngFor="let item of historial">
+      <div class="card-header">
+        <div>
+          <h3>{{ item.categoria }}</h3>
+          <span class="status-badge" [ngClass]="(item.estado || '').toLowerCase().replace(' ', '-')">{{ item.estado }}</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <p><strong>Descripción:</strong> {{ item.descripcion }}</p>
+        <p><strong>Dirección:</strong> {{ item.direccion }}</p>
+        <p><strong>Fecha Servicio:</strong> {{ item.fecha_servicio | date:'shortDate' }}</p>
+      </div>
+      <div class="card-footer" *ngIf="(item.estado || '').toLowerCase() === 'completada' && item.canRate">
+        <button class="btn-primary" (click)="abrirCalificar(item.id_solicitud)" style="background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #0f172a; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; transition: transform 0.2s;">
+          Calificar Vecino
+        </button>
+      </div>
+    </div>
+    
+    <div *ngIf="historial.length === 0" class="no-data">
+      <p>No hay actividades en el historial.</p>
+    </div>
+  </div>
+</div>
+
+<app-calificar [idSolicitud]="calificarSolicitudId" [isOpen]="calificarOpen" (onClose)="cerrarCalificar()" (onSaved)="calificacionGuardada()"></app-calificar>

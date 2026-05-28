@@ -1,0 +1,141 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Default Theme (Slate Blue - Calm & Trustworthy) */
+  --primary-color: #4f709c;
+  --primary-color-hover: #3f5a7e;
+  --primary-text-on-color: white;
+  --primary-light: #f0f4f8;
+  --primary-disabled: #a7b8cd;
+
+  --sidebar-bg: #223348;
+  --sidebar-container-bg: #2d435e;
+  --sidebar-accent: #7fa0c7;
+  --sidebar-text: #ffffff;
+  --sidebar-text-muted: #b8c9db;
+  --sidebar-btn-bg: #4f709c;
+  --sidebar-btn-text: white;
+
+  /* Global Alert Colors */
+  --error-color: #d32f2f;
+  --error-bg: #ffebee;
+  --success-color: #2e7d32;
+  --success-bg: #e8f5e9;
+
+  /* Standardized Border Radius Scale */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+}
+
+.theme-voluntario {
+  /* Soft Sage Green - Calm, Desaturated & Natural */
+  --primary-color: #558b6e;
+  --primary-color-hover: #446f58;
+  --primary-text-on-color: white;
+  --primary-light: #eff5f1;
+  --primary-disabled: #aac5b6;
+
+  --sidebar-bg: #274032;
+  --sidebar-container-bg: #335341;
+  --sidebar-accent: #84b79b;
+  --sidebar-text: #ffffff;
+  --sidebar-text-muted: #c2ded0;
+  --sidebar-btn-bg: #558b6e;
+  --sidebar-btn-text: #ffffff;
+}
+
+.theme-elder {
+  /* Soft Slate Blue - Calm, Desaturated & Trustworthy */
+  --primary-color: #4f709c;
+  --primary-color-hover: #3f5a7e;
+  --primary-text-on-color: white;
+  --primary-light: #f0f4f8;
+  --primary-disabled: #a7b8cd;
+
+  --sidebar-bg: #223348;
+  --sidebar-container-bg: #2d435e;
+  --sidebar-accent: #7fa0c7;
+  --sidebar-text: #ffffff;
+  --sidebar-text-muted: #b8c9db;
+  --sidebar-btn-bg: #4f709c;
+  --sidebar-btn-text: #ffffff;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Force Nunito globally, overriding Angular Material's Roboto default */
+body, 
+body *,
+.mat-typography,
+.mat-mdc-card,
+.mat-mdc-button,
+.mdc-button,
+.mat-mdc-form-field,
+.mdc-text-field,
+.mat-mdc-select,
+.mat-mdc-option,
+.mat-mdc-menu-item {
+  font-family: 'Nunito', "Helvetica Neue", sans-serif !important;
+}
+
+/* Protect Material Icons from the global font override */
+.material-icons,
+mat-icon,
+.mat-icon {
+  font-family: 'Material Icons' !important;
+}
+
+.page-title {
+  max-width: 95%;
+  margin: 20px auto 20px auto;
+}
+
+.page-title h2 {
+  margin: 0;
+  color: #333;
+}
+
+/* 
+========================================
+ESTILOS DE MENSAJES DE ALERTA (SNACKBARS)
+Aquí puedes cambiar los colores de los mensajes emergentes
+como "Error al actualizar" o "Perfil actualizado"
+========================================
+*/
+
+/* Mensajes de Éxito */
+.success-snackbar {
+  --mdc-snackbar-container-color: #2e7d32; /* Color de fondo verde oscuro */
+  --mdc-snackbar-supporting-text-color: white; /* Color del texto principal */
+  --mdc-snackbar-container-shape: 8px; /* Bordes redondeados */
+}
+
+/* Color del botón "Cerrar" en los mensajes de éxito */
+.success-snackbar .mat-mdc-button.mat-mdc-snack-bar-action {
+  color: #c8e6c9 !important; 
+}
+
+/* Mensajes de Error */
+.error-snackbar {
+  --mdc-snackbar-container-color: #d32f2f; /* Color de fondo rojo oscuro */
+  --mdc-snackbar-supporting-text-color: white; /* Color del texto principal */
+  --mdc-snackbar-container-shape: 8px; /* Bordes redondeados */
+}
+
+/* Color del botón "Cerrar" en los mensajes de error */
+.error-snackbar .mat-mdc-button.mat-mdc-snack-bar-action {
+  color: #ffcdd2 !important; 
+}

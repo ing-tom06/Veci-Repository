@@ -1,0 +1,63 @@
+<div class="page-title">
+  <h2>Mis Solicitudes Activas</h2>
+</div>
+<div class="dashboard-container">
+  
+  <div class="card-grid">
+    <div class="card" *ngFor="let sol of solicitudes">
+      <div class="card-header">
+        <div>
+          <h3>{{ sol.categoria }}</h3>
+          <span class="status-badge" [ngClass]="(sol.estado || '').toLowerCase()">{{ sol.estado }}</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <p><strong>Descripción:</strong> {{ sol.descripcion }}</p>
+        <p><strong>Dirección:</strong> {{ sol.direccion }}</p>
+        <p><strong>Fecha Servicio:</strong> {{ sol.fecha_servicio | date:'shortDate' }}</p>
+      </div>
+      <div class="card-footer">
+        <button class="btn-primary" (click)="verOfertas(sol.id_solicitud)">
+          {{ mostrarOfertas[sol.id_solicitud] ? 'Ocultar Ofertas' : 'Ver Ofertas' }}
+        </button>
+        <button class="btn-success-footer" *ngIf="sol.estado === 'ASIGNADA'" (click)="finalizarSolicitud(sol.id_solicitud)">
+          Finalizar
+        </button>
+        <button class="btn-chat-footer" *ngIf="sol.estado === 'ASIGNADA'" (click)="abrirChat(sol.id_solicitud)" style="margin-left: 8px; background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: transform 0.2s;">
+          Chat
+        </button>
+      </div>
+
+      <!-- Nested Offers View -->
+      <div class="nested-offers" *ngIf="mostrarOfertas[sol.id_solicitud]">
+        <h4>Ofertas de Voluntarios</h4>
+        
+        <div class="offer-item" *ngFor="let oferta of ofertasPorSolicitud[sol.id_solicitud]">
+          <div class="offer-header">
+            <img [src]="oferta.foto_perfil || 'assets/default-avatar.png'" alt="Voluntario" class="offer-avatar">
+            <div class="offer-details">
+              <p class="offer-name">{{ oferta.nombre }} {{ oferta.apellido }} <span class="offer-age">({{ oferta.edad }} años)</span></p>
+              <span class="status-badge" [ngClass]="(oferta.estado || '').toLowerCase()">{{ oferta.estado }}</span>
+            </div>
+          </div>
+          
+          <div class="offer-actions" *ngIf="oferta.estado === 'PENDIENTE' && sol.estado === 'ABIERTA'">
+            <button class="btn-success btn-small" (click)="aceptarOferta(oferta.id_oferta, sol.id_solicitud)">Aceptar</button>
+            <button class="btn-danger btn-small" (click)="rechazarOferta(oferta.id_oferta, sol.id_solicitud)">Rechazar</button>
+          </div>
+        </div>
+
+        <div class="no-offers" *ngIf="ofertasPorSolicitud[sol.id_solicitud]?.length === 0">
+          <p>Aún no hay ofertas para esta solicitud.</p>
+        </div>
+      </div>
+
+    </div>
+    
+    <div *ngIf="solicitudes.length === 0" class="no-data">
+      <p>No tienes solicitudes activas. <a routerLink="/adulto-mayor/nueva-solicitud">Crear una nueva</a>.</p>
+    </div>
+  </div>
+</div>
+
+<app-chat [idSolicitud]="chatSolicitudId" [isOpen]="chatOpen" (onClose)="cerrarChat()"></app-chat>

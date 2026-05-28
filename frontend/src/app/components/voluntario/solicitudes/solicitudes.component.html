@@ -1,0 +1,48 @@
+<div class="page-title">
+  <h2>Solicitudes Abiertas</h2>
+</div>
+<div class="dashboard-container">
+  
+  <div class="search-container">
+    <select [(ngModel)]="selectedCategory" class="search-input">
+      <option value="Todos">Todos</option>
+      <option value="Acompañamiento">Acompañamiento</option>
+      <option value="Compras">Compras y Recados</option>
+      <option value="Asistencia Médica">Asistencia Médica (Citas)</option>
+      <option value="Tecnología">Ayuda con Tecnología</option>
+      <option value="Tareas del Hogar">Pequeñas Tareas del Hogar</option>
+      <option value="Mascotas">Paseo de Mascotas</option>
+      <option value="Otro">Otro</option>
+    </select>
+    <button class="btn-search" (click)="filter()">Buscar</button>
+  </div>
+
+  <div class="card-grid">
+    <div class="card" *ngFor="let sol of filteredSolicitudes">
+      <div class="card-header">
+        <img [src]="sol.foto_perfil || 'assets/default-avatar.png'" alt="Perfil" class="avatar">
+        <div>
+          <h3>{{ sol.nombre }} {{ sol.apellido }}</h3>
+          <span class="category-badge">{{ sol.categoria }}</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <p><strong>Descripción:</strong> {{ sol.descripcion }}</p>
+        <p><strong>Dirección:</strong> {{ sol.direccion }}</p>
+        <p><strong>Fecha:</strong> {{ sol.fecha_servicio | date:'shortDate' }}</p>
+        <p><strong>Estado:</strong> <span class="status-badge">{{ sol.estado }}</span></p>
+      </div>
+      <div class="card-footer">
+        <button class="btn-primary" 
+                [disabled]="ofertasEnviadas.has(sol.id_solicitud)"
+                (click)="ofrecerAyuda(sol.id_solicitud)">
+          {{ ofertasEnviadas.has(sol.id_solicitud) ? 'Pendiente de respuesta' : 'Ofrecer Ayuda' }}
+        </button>
+      </div>
+    </div>
+    
+    <div *ngIf="filteredSolicitudes.length === 0" class="no-data">
+      <p>No hay solicitudes disponibles para la categoría seleccionada.</p>
+    </div>
+  </div>
+</div>

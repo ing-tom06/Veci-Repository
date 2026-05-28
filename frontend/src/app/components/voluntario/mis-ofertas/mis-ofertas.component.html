@@ -1,0 +1,32 @@
+<div class="page-title">
+  <h2>Mis Ofertas Activas</h2>
+</div>
+<div class="dashboard-container">
+  
+  <div class="card-grid">
+    <div class="card" *ngFor="let oferta of ofertas">
+      <div class="card-header">
+        <div>
+          <h3>{{ oferta.categoria }}</h3>
+          <span class="status-badge" [ngClass]="(oferta.estado || '').toLowerCase()">{{ oferta.estado }}</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <p><strong>Descripción:</strong> {{ oferta.descripcion }}</p>
+        <p><strong>Dirección:</strong> {{ oferta.direccion }}</p>
+        <p><strong>Fecha Servicio:</strong> {{ oferta.fecha_servicio | date:'shortDate' }}</p>
+      </div>
+      <div class="card-footer" *ngIf="oferta.estado === 'ACEPTADA'">
+        <button class="btn-primary" (click)="abrirChat(oferta.id_solicitud)" style="background: linear-gradient(135deg, #6366f1, #4f46e5); color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: transform 0.2s;">
+          Chat con Vecino
+        </button>
+      </div>
+    </div>
+    
+    <div *ngIf="ofertas.length === 0" class="no-data">
+      <p>No has realizado ofertas activas.</p>
+    </div>
+  </div>
+</div>
+
+<app-chat [idSolicitud]="chatSolicitudId" [isOpen]="chatOpen" (onClose)="cerrarChat()"></app-chat>

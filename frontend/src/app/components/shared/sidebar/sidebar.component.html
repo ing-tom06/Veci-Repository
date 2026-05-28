@@ -1,0 +1,47 @@
+<button class="mobile-menu-btn" (click)="toggleMobileMenu()" *ngIf="!isMobileMenuOpen">
+  ☰ Menú
+</button>
+
+<aside class="sidebar" [class.open]="isMobileMenuOpen">
+  <div class="sidebar-header">
+    <h2 class="logo">VECI</h2>
+  </div>
+
+  <div class="profile-container" *ngIf="user">
+    <img [src]="user.foto || 'assets/default-avatar.png'" alt="Perfil" class="profile-photo">
+    <div class="profile-info">
+      <div class="profile-name-row">
+        <h3 class="profile-name">{{ user.nombre }}</h3>
+        <span class="profile-rating" *ngIf="user.promedio_calificaciones !== undefined && user.promedio_calificaciones !== null">
+          ★{{ user.promedio_calificaciones > 0 ? (user.promedio_calificaciones | number:'1.1-1') : '0.0' }}
+        </span>
+      </div>
+      <p class="profile-role">{{ user.correo }}</p>
+      <p class="profile-role">{{ user.rol | titlecase }}</p>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <!-- Rutas Voluntario -->
+    <ul class="nav-list" *ngIf="user?.rol === 'voluntario'">
+      <li><a routerLink="/voluntario/solicitudes" routerLinkActive="active" class="nav-link" (click)="isMobileMenuOpen = false">Solicitudes</a></li>
+      <li><a routerLink="/voluntario/mis-ofertas" routerLinkActive="active" class="nav-link" (click)="isMobileMenuOpen = false">Mis ofertas</a></li>
+      <li><a routerLink="/voluntario/historial" routerLinkActive="active" class="nav-link" (click)="isMobileMenuOpen = false">Historial</a></li>
+      <li><a routerLink="/voluntario/editar-perfil" routerLinkActive="active" class="nav-link" (click)="isMobileMenuOpen = false">Editar perfil</a></li>
+    </ul>
+
+    <!-- Rutas Adulto Mayor -->
+    <ul class="nav-list" *ngIf="user?.rol === 'adulto mayor'">
+      <li><a routerLink="/adulto-mayor/nueva-solicitud" routerLinkActive="active" class="nav-link" (click)="isMobileMenuOpen = false">Pedir ayuda</a></li>
+      <li><a routerLink="/adulto-mayor/mis-solicitudes" routerLinkActive="active" class="nav-link" (click)="isMobileMenuOpen = false">Mis solicitudes</a></li>
+      <li><a routerLink="/adulto-mayor/historial" routerLinkActive="active" class="nav-link" (click)="isMobileMenuOpen = false">Historial</a></li>
+      <li><a routerLink="/adulto-mayor/editar-perfil" routerLinkActive="active" class="nav-link" (click)="isMobileMenuOpen = false">Editar perfil</a></li>
+    </ul>
+  </nav>
+
+  <div class="logout-container">
+    <a href="javascript:void(0)" (click)="logout()" class="logout-btn">Cerrar sesión</a>
+  </div>
+</aside>
+
+<div class="overlay" *ngIf="isMobileMenuOpen" (click)="toggleMobileMenu()"></div>

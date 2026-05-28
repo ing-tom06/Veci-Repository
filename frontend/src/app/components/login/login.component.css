@@ -1,0 +1,146 @@
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: #f8fafc;
+}
+
+.split-container {
+  display: flex;
+  width: 900px;
+  /* Fixed width */
+  max-width: 100%;
+  height: 550px;
+  /* Fixed height so it stays stationary */
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.split-left {
+  display: none;
+  /* Oculto en móviles */
+  flex: 1;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-color-hover) 100%);
+  color: var(--primary-text-on-color);
+  padding: 40px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .split-left {
+    display: flex;
+  }
+}
+
+.brand-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brand-icon {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  font-weight: 500;
+  opacity: 0.9;
+  font-family: serif;
+}
+
+.brand-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0 0 15px 0;
+  letter-spacing: -1px;
+}
+
+.brand-subtitle {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.split-right {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.form-wrapper {
+  width: 100%;
+  max-width: 320px;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-header h2 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  font-weight: 800;
+  margin: 0 0 5px 0;
+}
+
+.auth-header p {
+  color: #64748b;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Removed the generic input flattening that broke Angular Material Labels */
+
+.submit-btn {
+  margin-top: 10px;
+  padding: 24px 0 !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  border-radius: var(--radius-sm) !important;
+  background-color: var(--primary-color) !important;
+  box-shadow: none !important;
+}
+
+.submit-btn:hover {
+  background-color: var(--primary-color-hover) !important;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 25px;
+  font-size: 0.95rem;
+}
+
+.auth-footer a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.error-msg {
+  color: var(--error-color);
+  background-color: var(--error-bg);
+  padding: 10px;
+  border-radius: var(--radius-xs);
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+}

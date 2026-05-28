@@ -1,0 +1,63 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: veci_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: tomassanchez06
+      MYSQL_DATABASE: db_veci
+    ports:
+      - "3308:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - veci_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  backend:
+    build: ./backend
+    container_name: veci_backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=tomassanchez06
+      - DB_NAME=db_veci
+      - DB_PORT=3306
+      - JWT_SECRET=pitherastonmartin
+    volumes:
+      - ./backend/uploads:/app/uploads
+    networks:
+      - veci_network
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: veci_frontend
+    restart: unless-stopped
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - veci_network
+    depends_on:
+      backend:
+        condition: service_started
+
+volumes:
+  db_data:
+
+networks:
+  veci_network:
+    driver: bridge

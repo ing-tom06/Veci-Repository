@@ -1,0 +1,150 @@
+.form-container {
+  max-width: 95%;
+  margin: 0 auto;
+  background: white;
+  padding: 15px 20px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.solicitud-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+label {
+  font-weight: bold;
+  color: #333;
+}
+
+.form-control {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+}
+
+.file-input {
+  border: none;
+  padding: 0;
+}
+
+.form-control:read-only,
+.form-control:disabled {
+  background-color: #f5f5f5;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.profile-photo-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.profile-photo-preview {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-light);
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: var(--primary-text-on-color);
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 15px;
+  align-self: flex-end;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.btn-primary:disabled {
+  background: var(--primary-disabled);
+  cursor: not-allowed;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--primary-color-hover);
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .profile-photo-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.profile-rating-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff9e6;
+  border: 1px solid #ffe8b3;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  margin-left: auto;
+  box-shadow: 0 2px 5px rgba(255, 180, 0, 0.05);
+}
+
+.profile-rating-badge .rating-star {
+  font-size: 1.3rem;
+  color: #ffb400;
+  filter: drop-shadow(0 0 2px rgba(255, 180, 0, 0.3));
+}
+
+.profile-rating-badge .rating-label {
+  font-weight: 700;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.profile-rating-badge .rating-value {
+  font-weight: 800;
+  color: #e69500;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 768px) {
+  .profile-rating-badge {
+    margin-left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}

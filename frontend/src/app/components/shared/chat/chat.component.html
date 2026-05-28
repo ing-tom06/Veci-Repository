@@ -1,0 +1,41 @@
+<div class="chat-drawer" [class.open]="isOpen">
+  <!-- Header -->
+  <div class="chat-header">
+    <div class="chat-header-info">
+      <div class="avatar-placeholder">
+        <span>💬</span>
+      </div>
+      <div>
+        <h3>{{ counterpartName }}</h3>
+        <p class="subtitle">Chat de Vecinos</p>
+      </div>
+    </div>
+    <button class="close-btn" (click)="closeChat()">&times;</button>
+  </div>
+
+  <!-- Messages List -->
+  <div class="chat-messages" #messageContainer>
+    <div *ngFor="let msg of messages" class="message-row"
+         [ngClass]="{'outgoing': isOutgoing(msg), 'incoming': !isOutgoing(msg)}">
+      <div class="message-bubble">
+        <p class="msg-content">{{ msg.contenido }}</p>
+        <span class="msg-time">{{ msg.fecha_envio | date:'shortTime' }}</span>
+      </div>
+    </div>
+
+    <div class="empty-chat" *ngIf="messages.length === 0">
+      <p>¡Inicia la conversación! Escribe un mensaje abajo.</p>
+    </div>
+  </div>
+
+  <!-- Input Bar -->
+  <div class="chat-input-bar">
+    <input type="text" [(ngModel)]="newMessageText" (keydown.enter)="sendMessage()"
+           placeholder="Escribe un mensaje..." class="chat-input">
+    <button class="send-btn" (click)="sendMessage()">
+      <span>Enviar</span>
+    </button>
+  </div>
+</div>
+
+<div class="chat-backdrop" *ngIf="isOpen" (click)="closeChat()"></div>

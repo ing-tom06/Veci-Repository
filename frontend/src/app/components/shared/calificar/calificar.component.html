@@ -1,0 +1,45 @@
+<div class="rating-modal-overlay" *ngIf="isOpen">
+  <div class="rating-modal-card">
+    <div class="rating-modal-header">
+      <h3>Calificar Vecino</h3>
+      <button class="close-btn" (click)="closeModal()">&times;</button>
+    </div>
+    
+    <div class="rating-modal-body">
+      <p class="instruction-text">¿Cómo calificarías tu interacción en esta solicitud? Tu opinión ayuda a construir confianza en el barrio.</p>
+      
+      <!-- Interactive Stars -->
+      <div class="stars-selector">
+        <span *ngFor="let star of [1, 2, 3, 4, 5]"
+              class="star-item"
+              [class.active]="(hoverPuntaje || puntaje) >= star"
+              (mouseenter)="hoverStars(star)"
+              (mouseleave)="clearHover()"
+              (click)="selectStars(star)">
+          ★
+        </span>
+      </div>
+      <p class="rating-description" *ngIf="(hoverPuntaje || puntaje) > 0">
+        {{ (hoverPuntaje || puntaje) === 1 ? 'Malo' : '' }}
+        {{ (hoverPuntaje || puntaje) === 2 ? 'Regular' : '' }}
+        {{ (hoverPuntaje || puntaje) === 3 ? 'Bueno' : '' }}
+        {{ (hoverPuntaje || puntaje) === 4 ? 'Muy Bueno' : '' }}
+        {{ (hoverPuntaje || puntaje) === 5 ? 'Excelente' : '' }}
+      </p>
+
+      <!-- Review Comment -->
+      <div class="comment-field">
+        <label for="comentario">Escribe un comentario (opcional):</label>
+        <textarea id="comentario" [(ngModel)]="comentario" rows="4" 
+                  placeholder="Comparte detalles sobre tu experiencia..."></textarea>
+      </div>
+    </div>
+    
+    <div class="rating-modal-footer">
+      <button class="btn-cancel" (click)="closeModal()">Cancelar</button>
+      <button class="btn-submit" (click)="submitRating()" [disabled]="submitting || puntaje === 0">
+        {{ submitting ? 'Enviando...' : 'Enviar Calificación' }}
+      </button>
+    </div>
+  </div>
+</div>

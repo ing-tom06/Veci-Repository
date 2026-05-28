@@ -1,0 +1,39 @@
+<div class="page-title">
+  <h2>Crear Nueva Solicitud de Ayuda</h2>
+</div>
+<div class="form-container">
+  
+  <form [formGroup]="solicitudForm" (ngSubmit)="onSubmit()" class="solicitud-form">
+    
+    <div class="form-group">
+      <label for="categoria">Categoría</label>
+      <select id="categoria" formControlName="categoria" class="form-control">
+        <option value="">Seleccione una categoría...</option>
+        <option value="Acompañamiento">Acompañamiento</option>
+        <option value="Compras">Compras y Recados</option>
+        <option value="Asistencia Médica">Asistencia Médica (Citas)</option>
+        <option value="Tecnología">Ayuda con Tecnología</option>
+        <option value="Tareas del Hogar">Pequeñas Tareas del Hogar</option>
+        <option value="Mascotas">Paseo de Mascotas</option>
+        <option value="Otro">Otro</option>
+      </select>
+    </div>
+
+    <div class="form-group desc-group">
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" formControlName="descripcion" class="form-control" placeholder="Describa en qué necesita ayuda..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="direccion">Dirección</label>
+      <input type="text" id="direccion" formControlName="direccion" class="form-control" placeholder="Su dirección exacta o aproximada">
+    </div>
+
+    <div class="form-group">
+      <label for="fecha_servicio">Fecha Requerida</label>
+      <input type="date" id="fecha_servicio" formControlName="fecha_servicio" class="form-control">
+    </div>
+
+    <button type="submit" class="btn-primary" [disabled]="solicitudForm.invalid">Publicar Solicitud</button>
+  </form>
+</div>
