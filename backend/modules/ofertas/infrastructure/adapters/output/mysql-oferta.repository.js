@@ -1,5 +1,5 @@
 const OfertaRepositoryPort = require('../../../domain/ports/oferta-repository.port');
-const { registrarHistorial } = require('../../../../../utils/historial');
+const { registrarHistorial, autoCompletePastSolicitudes } = require('../../../../../utils/historial');
 
 class MySQLOfertaRepository extends OfertaRepositoryPort {
   constructor(dbPool) {
@@ -16,6 +16,7 @@ class MySQLOfertaRepository extends OfertaRepositoryPort {
   }
 
   async getMisOfertasActivas(idUsuario) {
+    await autoCompletePastSolicitudes(this.db);
     const [rows] = await this.db.execute(
       `SELECT o.id_oferta, o.id_solicitud, o.id_voluntario, o.estado_oferta AS estado, o.fecha_oferta, s.categoria, s.descripcion, s.direccion, s.fecha_servicio 
        FROM oferta o 
@@ -29,6 +30,7 @@ class MySQLOfertaRepository extends OfertaRepositoryPort {
   }
 
   async getHistorialVoluntario(idUsuario) {
+    await autoCompletePastSolicitudes(this.db);
     const [rows] = await this.db.execute(
       `SELECT o.id_oferta, o.id_solicitud, o.id_voluntario, 
        CASE 

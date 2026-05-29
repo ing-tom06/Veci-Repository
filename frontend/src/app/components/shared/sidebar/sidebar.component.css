@@ -19,6 +19,7 @@
 .sidebar {
   width: 280px;
   height: 100vh;
+  height: 100dvh;
   background: var(--sidebar-bg);
   position: fixed;
   top: 0;
@@ -31,7 +32,7 @@
 }
 
 .sidebar-header {
-  margin-bottom: 25px;
+  margin-bottom: 35px;
 }
 
 .logo {
@@ -45,11 +46,11 @@
 .profile-container {
   background: var(--sidebar-container-bg);
   border-radius: var(--radius-lg);
-  padding: 20px;
+  padding: 22px 20px;
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
 }
 
 .profile-photo {
@@ -78,7 +79,7 @@
 .profile-name {
   margin: 0;
   color: var(--sidebar-text);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 700;
   white-space: nowrap;
   overflow: hidden;
@@ -104,7 +105,7 @@
 
 .profile-role {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--sidebar-text);
   opacity: 0.9;
   white-space: nowrap;
@@ -124,15 +125,15 @@
 }
 
 .sidebar-nav li {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .sidebar-nav li a {
   display: block;
-  padding: 5px 0 5px 20px;
+  padding: 6px 0 6px 20px;
   color: var(--sidebar-text-muted);
   text-decoration: none;
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 500;
   transition: all 0.2s;
   border-left: 4px solid transparent;
@@ -199,5 +200,54 @@
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 998;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    padding: 24px;
+  }
+  .sidebar-header {
+    margin-bottom: 20px;
+  }
+  .profile-container {
+    margin-bottom: 28px;
+    padding: 18px;
+  }
+  .sidebar-nav li {
+    margin-bottom: 18px;
+  }
+  .logout-container {
+    padding-top: 20px;
+  }
+  .logout-btn {
+    padding: 14px;
+  }
+}
+
+@media (max-height: 600px) {
+  .sidebar {
+    padding: 20px;
+  }
+  .profile-container {
+    padding: 15px;
+    margin-bottom: 18px;
+  }
+  .sidebar-header {
+    margin-bottom: 15px;
+  }
+  .logo {
+    font-size: 2rem;
+  }
+  .sidebar-nav li {
+    margin-bottom: 14px;
+  }
+  .sidebar-nav li a {
+    font-size: 1.15rem;
+    padding: 5px 0 5px 15px;
+  }
+  .logout-btn {
+    padding: 12px;
+    font-size: 1.1rem;
   }
 }

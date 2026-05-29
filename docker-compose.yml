@@ -45,10 +45,7 @@ services:
     container_name: veci_frontend
     restart: unless-stopped
     ports:
-      - "4200:4200"
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
+      - "80:80"
     networks:
       - veci_network
     depends_on:

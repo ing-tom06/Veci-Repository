@@ -1,0 +1,37 @@
+# ==========================================
+# Dependencias de Node.js (Backend)
+# ==========================================
+node_modules/
+
+# ==========================================
+# Variables de Entorno y Credenciales
+# ==========================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+!.env.example
+
+# ==========================================
+# Archivos de Logs y Ejecución
+# ==========================================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ==========================================
+# Subidas de Archivos (Uploads de Usuarios)
+# ==========================================
+# Ignora todas las subidas de los usuarios en desarrollo
+uploads/*
+# Permite mantener la carpeta vacía en Git agregando un .gitkeep
+!uploads/.gitkeep
+
+# ==========================================
+# Cobertura y Pruebas
+# ==========================================
+coverage/
+.nyc_output/

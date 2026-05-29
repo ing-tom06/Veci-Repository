@@ -1,6 +1,6 @@
 const SolicitudRepositoryPort = require('../../../domain/ports/solicitud-repository.port');
 const Solicitud = require('../../../domain/models/solicitud');
-const { registrarHistorial } = require('../../../../../utils/historial');
+const { registrarHistorial, autoCompletePastSolicitudes } = require('../../../../../utils/historial');
 
 class MySQLSolicitudRepository extends SolicitudRepositoryPort {
   constructor(dbPool) {
@@ -41,6 +41,7 @@ class MySQLSolicitudRepository extends SolicitudRepositoryPort {
   }
 
   async findByUserId(idUsuario) {
+    await autoCompletePastSolicitudes(this.db);
     const [rows] = await this.db.execute(
       `SELECT * FROM solicitud 
        WHERE id_usuario = ? 
@@ -52,6 +53,7 @@ class MySQLSolicitudRepository extends SolicitudRepositoryPort {
   }
 
   async findHistorialByUserId(idUsuario) {
+    await autoCompletePastSolicitudes(this.db);
     const [rows] = await this.db.execute(
       `SELECT id_solicitud, id_usuario, categoria, descripcion, direccion, fecha_servicio,
        CASE 

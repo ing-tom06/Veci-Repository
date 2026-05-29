@@ -1,0 +1,95 @@
+# ==========================================
+# Exclusiones Globales del Sistema y OS
+# ==========================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ==========================================
+# Editores de Código e IDEs
+# ==========================================
+# VS Code (Configuraciones locales de usuario)
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+.history/
+*.code-workspace
+
+# IntelliJ / WebStorm / PhpStorm / PyCharm / Rider / CLion
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Sublime Text y otros editores
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+.c9/
+*.launch
+
+# ==========================================
+# Dependencias y Caché Global
+# ==========================================
+node_modules/
+jspm_packages/
+web_modules/
+.npm/
+.yarn/
+.pnpm-store/
+.angular/cache/
+.sass-cache/
+
+# ==========================================
+# Compilados y Builds
+# ==========================================
+dist/
+build/
+out-tsc/
+bazel-out/
+/bin
+/obj
+
+# ==========================================
+# Archivos Temporales y Logs
+# ==========================================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.tmp/
+tmp/
+temp/
+
+# ==========================================
+# Entornos y Seguridad (Exclusión Global Preventiva)
+# ==========================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+*.env.*
+!.env.example
+
+# ==========================================
+# Pruebas Unitarias y Cobertura
+# ==========================================
+coverage/
+.nyc_output/
+
+# ==========================================
+# Carpetas del Asistente IA (Gemini/Antigravity)
+# ==========================================
+brain/
+.gemini/

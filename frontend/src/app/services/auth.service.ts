@@ -23,6 +23,9 @@ export class AuthService {
   }
 
   saveToken(token: string, user: any): void {
+    // Limpiar cualquier sesión previa antes de guardar la nueva
+    // Esto evita que tokens de otros usuarios persistan entre logins
+    sessionStorage.clear();
     sessionStorage.setItem('token', token);
     sessionStorage.setItem('user', JSON.stringify(user));
   }

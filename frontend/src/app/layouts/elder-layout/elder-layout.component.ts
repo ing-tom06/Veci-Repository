@@ -2,13 +2,14 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { SidebarComponent, SidebarLink } from '../../components/shared/sidebar/sidebar.component';
+import { NotificacionesComponent } from '../../components/shared/notificaciones/notificaciones.component';
 import { AuthService } from '../../services/auth.service';
 import { PerfilService } from '../../services/perfil.service';
 
 @Component({
   selector: 'app-elder-layout',
   standalone: true,
-  imports: [CommonModule, RouterModule, SidebarComponent],
+  imports: [CommonModule, RouterModule, SidebarComponent, NotificacionesComponent],
   templateUrl: './elder-layout.component.html',
   styleUrls: ['./elder-layout.component.css']
 })
